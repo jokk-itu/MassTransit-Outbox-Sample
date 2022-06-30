@@ -17,8 +17,8 @@ To test the behaviour, four endpoints are exposed in an API.
 /send
 ```
 
-The outbox endpoints uses the outbox behaviour to send/publish messages to RabbitMQ, and then inbox for the consumer.
-The endpoints with outbox, simply sends and publishes events directly to RabbitMQ without outbox/inbox behaviour.
+The outbox endpoints use the outbox behaviour to send/publish messages to RabbitMQ, and then inbox behaviour for the consumer.
+The others simply send and publish events directly to RabbitMQ without outbox/inbox behaviour.
 
 ## How to run
 
