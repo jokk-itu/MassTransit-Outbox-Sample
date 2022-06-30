@@ -1,0 +1,36 @@
+version: '3.4'
+
+networks:
+  outbox_net:
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+    ports:
+      - 5000:80
+    networks:
+      - outbox_net
+  
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: db
+    hostname: db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password12!
+    ports:
+      - 1433:1433
+    networks:
+      - outbox_net
+
+  eventbus:
+    image: rabbitmq:3.9-management
+    hostname: eventbus
+    container_name: eventbus
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - outbox_net
